@@ -1,16 +1,19 @@
-import React, {useRef, useState} from 'react'
+import React, {useState} from 'react'
 import MyButton from './UI/button/MyButton'
 import MyInput from './UI/input/MyInput'
 
 
-const Form = ({posts, setPosts}) => {
+const Form = ({create}) => {
 
     const [post, setPost] = useState({title: '', body: ''})
     
 
     const addNewPost = (e) => {
         e.preventDefault()
-        setPosts([...posts, {...post, id: Date.now()}])
+        const newPost = {
+          ...post, id: Date.now()
+        }
+        create(newPost)
         setPost({title: '', body: ''})
     }
 
